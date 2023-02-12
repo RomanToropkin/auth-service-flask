@@ -1,0 +1,17 @@
+version: '3'
+services:
+  flask:
+    # Путь до Dockerfile
+    build: .
+    # Имя для создаваемого контейнера
+    container_name: backend-flask
+    # Создание переменных окружения в контейнере
+    environment:
+      # для отладки (при запуске в релиз убрать!)
+      - FLASK_ENV=development
+      ## Позволяет отслеживать процесс работы приложения в командной строке
+      - PYTHONUNBUFFERED=True
+      - DB_URL=postgresql://postgres:postgres@192.168.31.101:5432/psu
+      - JWT_SECRET=9cf4a6c8a7f81540675e78965b2835ae8c209a57ffc9d2479c6e1106597b71570783581c7106eec0bcddec2fc7c5f155cdabafe9a6890473be56c487ffe30903
+    ports:
+      - "9900:5000"
